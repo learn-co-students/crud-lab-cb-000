@@ -4,12 +4,12 @@ import Reviews from '../components/reviews/Reviews'
 import { connect } from 'react-redux'
 
 class ReviewsContainer extends Component {
-
-  render() {
+    render() {
+    const currentRestaurantReviews = this.props.reviews.filter(review => review.restaurantId == this.props.restaurant.id)
     return (
       <div>
-        <ReviewInput restaurant={this.props.restaurant} addReview={this.props.addReview}/>
-        <Reviews reviews={this.props.reviews} deleteReview={this.props.deleteReview}/>
+        <ReviewInput restaurantId={this.props.restaurant.id} addReview={this.props.addReview}/>
+        <Reviews reviews={currentRestaurantReviews} deleteReview={this.props.deleteReview}/>
       </div>
     )
   }
@@ -23,7 +23,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addReview: review => dispatch({type: 'ADD_REVIEW', review}),
-    deleteReview: id => dispatch({type: 'DELETE_REVIEW', id})
+    deleteReview: review => dispatch({type: 'DELETE_REVIEW', review})
   }
 }
 
