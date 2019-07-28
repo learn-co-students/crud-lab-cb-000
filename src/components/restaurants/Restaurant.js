@@ -5,6 +5,7 @@ class Restaurant extends Component {
 
 
   render() {
+
     const restaurant = this.props.restaurant;
 
     return (
